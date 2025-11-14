@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulis Ulasan - Kos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/bali-main/styles/style.css">
+    <style>
+        .review-form-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .review-form h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 28px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #444;
+            font-size: 16px;
+        }
+        
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            height: 180px;
+            resize: vertical;
+        }
+        
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        
+        .star-rating input {
+            display: none;
+        }
+        
+        .star-rating label {
+            cursor: pointer;
+            font-size: 35px;
+            color: #ddd;
+            margin-right: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: #ffcc00;
+            transform: scale(1.1);
+        }
+        
+        .btn-submit {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn-submit:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+        
+        .btn-back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+        }
+        
+        .btn-back:hover {
+            text-decoration: underline;
+        }
+        
+        .login-required {
+            text-align: center;
+            padding: 30px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            margin: 50px auto;
+            max-width: 600px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .login-required h2 {
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .login-required p {
+            margin-bottom: 25px;
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .login-btn {
+            display: inline-block;
+            background-color: #4285F4;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background-color: #3367D6;
+            transform: translateY(-2px);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+            color: #666;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="auth-container">
+        <!-- Container for login message or review form -->
+        <!-- Will be populated by JavaScript -->
+    </div>
+    
+    <!-- Template for login required message -->
+    <template id="login-required-template">
+        <div class="login-required">
+            <h2>Login Diperlukan</h2>
+            <p>Untuk memberikan ulasan, Anda perlu login terlebih dahulu. Silakan login untuk melanjutkan.</p>
+            <a href="login.html" class="login-btn">Login Sekarang</a>
+            <p>Belum punya akun? <a href="register.html">Daftar di sini</a></p>
+            <a href="index.html" class="btn-back">Kembali ke Halaman Utama</a>
+        </div>
+    </template>
+    
+    <!-- Template for review form -->
+    <template id="review-form-template">
+        <div class="review-form-container">
+            <div class="review-form">
+                <h1>Tulis Ulasan</h1>
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-name" id="logged-user-name">
+                        <!-- Will be filled by JavaScript -->
+                    </div>
+                </div>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="rating" value="5" required>
+                            <label for="star5" class="fas fa-star"></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4" class="fas fa-star"></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3" class="fas fa-star"></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2" class="fas fa-star"></label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1" class="fas fa-star"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review">Ulasan Anda</label>
+                        <textarea id="review" name="review" placeholder="Bagikan pengalaman Anda tentang kos ini..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Kirim Ulasan
+                    </button>
+                </form>
+                <a href="index.html" class="btn-back">Kembali ke Halaman Utama</a>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Pastikan script Supabase dimuat sebelum script lainnya -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../scripts/api/supabaseClient.js"></script>
+    <script src="../scripts/auth/auth.js"></script>
+    <script src="../scripts/api/reviewsApi.js"></script>
+    <script src="../scripts/pages/review.js"></script>
+</body>
+</html>

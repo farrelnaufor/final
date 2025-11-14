@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manajemen Pesanan</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+    .navbar {
+      background: #1f1f1f;
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #FFD448;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFD448;
+    }
+    .container {
+      padding: 30px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin-bottom: 30px;
+      color: #FFD448;
+    }
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn-primary {
+      background: #FFD448;
+      color: #000;
+    }
+    .btn-primary:hover {
+      background: #ffdd6b;
+      transform: translateY(-2px);
+    }
+    .btn-success {
+      background: #28a745;
+      color: #fff;
+    }
+    .btn-success:hover {
+      background: #218838;
+    }
+    .btn-danger {
+      background: #dc3545;
+      color: #fff;
+    }
+    .btn-danger:hover {
+      background: #c82333;
+    }
+    .btn-warning {
+      background: #ffc107;
+      color: #000;
+    }
+    .btn-warning:hover {
+      background: #e0a800;
+    }
+    .btn-secondary {
+      background: #6c757d;
+      color: #fff;
+    }
+    .btn-secondary:hover {
+      background: #5a6268;
+    }
+    .table-container {
+      background: #1f1f1f;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead {
+      background: #2a2a2a;
+    }
+    th {
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+      color: #FFD448;
+      border-bottom: 2px solid #FFD448;
+    }
+    td {
+      padding: 15px;
+      border-bottom: 1px solid #333;
+    }
+    tr:hover {
+      background: #252525;
+    }
+    .status-badge {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .status-pending {
+      background: #ffc107;
+      color: #000;
+    }
+    .status-confirmed {
+      background: #17a2b8;
+      color: #fff;
+    }
+    .status-paid {
+      background: #28a745;
+      color: #fff;
+    }
+    .status-cancelled {
+      background: #dc3545;
+      color: #fff;
+    }
+    .status-completed {
+      background: #6c757d;
+      color: #fff;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #1f1f1f;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      border: 2px solid #FFD448;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .modal-header h2 {
+      color: #FFD448;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .form-group select,
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background: #2a2a2a;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #FFD448;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #999;
+    }
+    .empty-state i {
+      font-size: 48px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+    .filter-section {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .filter-section select {
+      padding: 10px 15px;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background: #2a2a2a;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"><i class="fas fa-receipt"></i> Manajemen Pesanan</div>
+    <div>
+      <button class="btn btn-secondary" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Kembali
+      </button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1><i class="fas fa-shopping-cart"></i> Daftar Pesanan</h1>
+    
+    <div class="filter-section">
+      <select id="statusFilter">
+        <option value="">Semua Status</option>
+        <option value="pending">Pending</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="paid">Paid</option>
+        <option value="cancelled">Cancelled</option>
+        <option value="completed">Completed</option>
+      </select>
+      <button class="btn btn-primary" onclick="loadOrders()">
+        <i class="fas fa-sync"></i> Refresh
+      </button>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>No. Order</th>
+            <th>Tipe Kamar</th>
+            <th>Durasi</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Tanggal</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="ordersTableBody">
+          <tr>
+            <td colspan="7" class="loading">
+              <i class="fas fa-spinner fa-spin"></i> Memuat data...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal Update Status -->
+  <div id="statusModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Update Status Pesanan</h2>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <form id="statusForm">
+        <input type="hidden" id="orderId">
+        <div class="form-group">
+          <label>No. Order</label>
+          <input type="text" id="orderNumber" readonly>
+        </div>
+        <div class="form-group">
+          <label>Status Baru</label>
+          <select id="newStatus" required>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="paid">Paid</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Catatan (Opsional)</label>
+          <textarea id="statusNote" placeholder="Tambahkan catatan untuk perubahan status..."></textarea>
+        </div>
+        <div class="action-buttons">
+          <button type="submit" class="btn btn-success">
+            <i class="fas fa-save"></i> Simpan
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">
+            <i class="fas fa-times"></i> Batal
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Detail -->
+  <div id="detailModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Detail Pesanan</h2>
+        <button class="close-btn" onclick="closeDetailModal()">&times;</button>
+      </div>
+      <div id="orderDetail"></div>
+      <div style="margin-top: 20px;">
+        <button class="btn btn-secondary" onclick="closeDetailModal()">
+          <i class="fas fa-times"></i> Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../scripts/api/supabaseClient.js"></script>
+  <script>
+    // Fungsi kembali
+    function goBack() {
+      console.log('🔙 Attempting to navigate back...');
+      console.log('History length:', window.history.length);
+      console.log('Referrer:', document.referrer);
+      
+      // Opsi 1: Jika ada referrer dari owner-dashboard
+      if (document.referrer && document.referrer.includes('owner-dashboard')) {
+        console.log('✅ Using window.history.back() - referrer detected');
+        window.history.back();
+        return;
+      }
+      
+      // Opsi 2: Jika ada history
+      if (window.history.length > 1) {
+        console.log('✅ Using window.history.back() - history exists');
+        window.history.back();
+        return;
+      }
+      
+      // Opsi 3: Direct redirect (fallback)
+      console.log('⚠️ Using direct redirect to owner-dashboard.html');
+      try {
+        window.location.href = 'owner-dashboard.html';
+      } catch (e) {
+        console.error('❌ Navigation failed:', e);
+        alert('Gagal kembali ke dashboard. Silakan gunakan menu navigasi.');
+      }
+    }
+    
+    // Gunakan supabase dari supabaseClient.js
+    const supabase = window.supabase;
+
+    let currentOrders = [];
+
+    // Load orders
+    async function loadOrders() {
+      console.log('🔄 Loading orders...');
+      const tbody = document.getElementById('ordersTableBody');
+      tbody.innerHTML = '<tr><td colspan="7" class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat data...</td></tr>';
+
+      try {
+        // Check if supabase is initialized
+        if (!supabase) {
+          throw new Error('Supabase client not initialized. Check supabaseClient.js');
+        }
+
+        console.log('✅ Supabase client ready');
+        
+        const statusFilter = document.getElementById('statusFilter').value;
+        console.log('🔍 Status filter:', statusFilter || 'none');
+        
+        let query = supabase.from('orders').select('*').order('created_at', { ascending: false });
+        
+        if (statusFilter) {
+          query = query.eq('status', statusFilter);
+        }
+
+        console.log('📡 Fetching data from Supabase...');
+        const { data, error } = await query;
+
+        if (error) {
+          console.error('❌ Supabase error:', error);
+          throw error;
+        }
+
+        console.log('✅ Data received:', data?.length || 0, 'orders');
+        
+        // Debug: Log struktur data order pertama
+        if (data && data.length > 0) {
+          console.log('📦 Sample order structure:', data[0]);
+          console.log('📋 Available fields:', Object.keys(data[0]));
+          
+          // Log khusus untuk user_id dan field user-related
+          console.log('🔍 User-related fields in order:');
+          console.log('   - user_id:', data[0].user_id);
+          console.log('   - name:', data[0].name);
+          console.log('   - email:', data[0].email);
+          console.log('   - phone:', data[0].phone);
+        }
+        
+        currentOrders = data || [];
+
+        if (currentOrders.length === 0) {
+          console.log('⚠️ No orders found');
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="empty-state">
+                <i class="fas fa-inbox"></i>
+                <p>Tidak ada pesanan ditemukan</p>
+                <small>Status filter: ${statusFilter || 'Semua'}</small>
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        console.log('🎨 Rendering', currentOrders.length, 'orders to table');
+        tbody.innerHTML = currentOrders.map(order => {
+          // Hitung durasi dari start_date dan end_date jika ada
+          let duration = '-';
+          if (order.start_date && order.end_date) {
+            const start = new Date(order.start_date);
+            const end = new Date(order.end_date);
+            const months = Math.round((end - start) / (1000 * 60 * 60 * 24 * 30));
+            duration = months + ' bulan';
+          } else if (order.duration_months) {
+            duration = order.duration_months + ' bulan';
+          } else if (order.duration) {
+            duration = order.duration + ' bulan';
+          }
+          
+          return `
+          <tr>
+            <td><strong>${order.order_number || '-'}</strong></td>
+            <td>${order.room_type || '-'}</td>
+            <td>${duration}</td>
+            <td><strong>Rp ${(order.total_payment || 0).toLocaleString('id-ID')}</strong></td>
+            <td><span class="status-badge status-${order.status}">${order.status || '-'}</span></td>
+            <td>${order.created_at ? new Date(order.created_at).toLocaleDateString('id-ID') : '-'}</td>
+            <td>
+              <div class="action-buttons">
+                <button class="btn btn-warning" onclick="openStatusModal('${order.id}')" title="Update Status">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-primary" onclick="viewDetail('${order.id}')" title="Lihat Detail">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="btn btn-danger" onclick="deleteOrder('${order.id}')" title="Hapus">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          `;
+        }).join('');
+        
+        console.log('✅ Orders loaded successfully');
+
+      } catch (error) {
+        console.error('❌ Error loading orders:', error);
+        console.error('Error details:', {
+          message: error.message,
+          code: error.code,
+          details: error.details,
+          hint: error.hint
+        });
+        
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" style="text-align: center; color: #dc3545; padding: 40px;">
+              <i class="fas fa-exclamation-triangle"></i>
+              <p style="margin: 10px 0;"><strong>Gagal memuat data</strong></p>
+              <p style="font-size: 14px; opacity: 0.8;">${error.message}</p>
+              <p style="font-size: 12px; margin-top: 10px;">
+                Buka Console (F12) untuk detail error
+              </p>
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    // Open status modal
+    function openStatusModal(orderId) {
+      const order = currentOrders.find(o => o.id === orderId);
+      if (!order) return;
+
+      document.getElementById('orderId').value = order.id;
+      document.getElementById('orderNumber').value = order.order_number || '-';
+      document.getElementById('newStatus').value = order.status || 'pending';
+      document.getElementById('statusNote').value = '';
+      document.getElementById('statusModal').classList.add('active');
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('statusModal').classList.remove('active');
+      document.getElementById('statusForm').reset();
+    }
+
+    // View detail
+    async function viewDetail(orderId) {
+      const order = currentOrders.find(o => o.id === orderId);
+      if (!order) return;
+
+      // Hitung durasi
+      let duration = '-';
+      if (order.start_date && order.end_date) {
+        const start = new Date(order.start_date);
+        const end = new Date(order.end_date);
+        const months = Math.round((end - start) / (1000 * 60 * 60 * 24 * 30));
+        duration = months + ' bulan';
+      } else if (order.duration_months) {
+        duration = order.duration_months + ' bulan';
+      } else if (order.duration) {
+        duration = order.duration + ' bulan';
+      }
+
+      // Get user profile data if user_id exists
+      let userProfile = null;
+      if (order.user_id) {
+        try {
+          console.log('Fetching profile for user_id:', order.user_id);
+          const { data: profile, error } = await supabase
+            .from('profiles')
+            .select('full_name, email, phone, bank_name, bank_account_number, bank_account_holder')
+            .eq('id', order.user_id)
+            .single();
+          
+          if (error) {
+            console.error('Error fetching user profile:', error);
+            console.log('Profile not found for user_id:', order.user_id);
+          } else if (profile) {
+            console.log('Profile found:', profile);
+            userProfile = profile;
+          }
+        } catch (error) {
+          console.error('Exception fetching user profile:', error);
+        }
+      } else {
+        console.log('No user_id found for order:', order.order_number);
+      }
+
+      const detailHTML = `
+        <div style="line-height: 1.8;">
+          <h3 style="color: #FFD448; margin-bottom: 20px;">Informasi Pesanan</h3>
+          <p><strong>No. Order:</strong> ${order.order_number || '-'}</p>
+          <p><strong>Tipe Kamar:</strong> ${order.room_type || '-'}</p>
+          <p><strong>Durasi:</strong> ${duration}</p>
+          ${order.start_date ? `<p><strong>Tanggal Mulai:</strong> ${new Date(order.start_date).toLocaleDateString('id-ID')}</p>` : ''}
+          ${order.end_date ? `<p><strong>Tanggal Selesai:</strong> ${new Date(order.end_date).toLocaleDateString('id-ID')}</p>` : ''}
+          <p><strong>Total Pembayaran:</strong> Rp ${(order.total_payment || 0).toLocaleString('id-ID')}</p>
+          <p><strong>Status:</strong> <span class="status-badge status-${order.status}">${order.status || '-'}</span></p>
+          <p><strong>Tanggal Dibuat:</strong> ${order.created_at ? new Date(order.created_at).toLocaleString('id-ID') : '-'}</p>
+          
+          ${userProfile ? `
+          <h3 style="color: #FFD448; margin: 30px 0 15px 0;">Informasi Pengguna (dari Profil)</h3>
+          <p><strong>Nama Lengkap:</strong> ${userProfile.full_name || '-'}</p>
+          <p><strong>Email:</strong> ${userProfile.email || '-'}</p>
+          <p><strong>Nomor Telepon:</strong> ${userProfile.phone || '-'}</p>
+          ${userProfile.bank_name ? `<p><strong>Nama Bank:</strong> ${userProfile.bank_name}</p>` : ''}
+          ${userProfile.bank_account_number ? `<p><strong>Nomor Rekening:</strong> ${userProfile.bank_account_number}</p>` : ''}
+          ${userProfile.bank_account_holder ? `<p><strong>Nama Pemilik Rekening:</strong> ${userProfile.bank_account_holder}</p>` : ''}
+          ` : ''}
+          
+          ${!userProfile && (order.name || order.email || order.phone) ? `
+          <h3 style="color: #FFD448; margin: 30px 0 15px 0;">Informasi Pengguna (dari Order)</h3>
+          ${order.name ? `<p><strong>Nama:</strong> ${order.name}</p>` : ''}
+          ${order.email ? `<p><strong>Email:</strong> ${order.email}</p>` : ''}
+          ${order.phone ? `<p><strong>Nomor Telepon:</strong> ${order.phone}</p>` : ''}
+          ` : ''}
+          
+          <p><strong>User ID:</strong> ${order.user_id || '-'}</p>
+          <p><strong>Room ID:</strong> ${order.room_id || '-'}</p>
+        </div>
+      `;
+
+      document.getElementById('orderDetail').innerHTML = detailHTML;
+      document.getElementById('detailModal').classList.add('active');
+    }
+
+    // Close detail modal
+    function closeDetailModal() {
+      document.getElementById('detailModal').classList.remove('active');
+    }
+
+    // Submit status form
+    document.getElementById('statusForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const orderId = document.getElementById('orderId').value;
+      const newStatus = document.getElementById('newStatus').value;
+      const note = document.getElementById('statusNote').value;
+
+      try {
+        const updateData = { 
+          status: newStatus,
+          updated_at: new Date().toISOString()
+        };
+
+        const { error } = await supabase
+          .from('orders')
+          .update(updateData)
+          .eq('id', orderId);
+
+        if (error) throw error;
+
+        // Create status log if note exists
+        if (note) {
+          await supabase.from('order_logs').insert({
+            order_id: orderId,
+            status: newStatus,
+            note: note,
+            created_at: new Date().toISOString()
+          });
+        }
+
+        alert('Status berhasil diupdate!');
+        closeModal();
+        loadOrders();
+
+      } catch (error) {
+        console.error('Error updating status:', error);
+        alert('Gagal mengupdate status: ' + error.message);
+      }
+    });
+
+    // Delete order
+    async function deleteOrder(orderId) {
+      if (!confirm('Apakah Anda yakin ingin menghapus pesanan ini?')) return;
+
+      try {
+        const { error } = await supabase
+          .from('orders')
+          .delete()
+          .eq('id', orderId);
+
+        if (error) throw error;
+
+        alert('Pesanan berhasil dihapus!');
+        loadOrders();
+
+      } catch (error) {
+        console.error('Error deleting order:', error);
+        alert('Gagal menghapus pesanan: ' + error.message);
+      }
+    }
+
+    // Filter change
+    document.getElementById('statusFilter').addEventListener('change', loadOrders);
+
+    // Close modal on outside click
+    window.onclick = function(event) {
+      const statusModal = document.getElementById('statusModal');
+      const detailModal = document.getElementById('detailModal');
+      if (event.target === statusModal) {
+        closeModal();
+      }
+      if (event.target === detailModal) {
+        closeDetailModal();
+      }
+    }
+
+    // Initial load
+    document.addEventListener('DOMContentLoaded', async () => {
+      console.log('🚀 Order Management System initializing...');
+      
+      // Check supabase client
+      if (!supabase) {
+        alert('ERROR: Supabase client tidak ditemukan!\n\nPastikan file supabaseClient.js sudah dimuat dengan benar.');
+        document.getElementById('ordersTableBody').innerHTML = `
+          <tr>
+            <td colspan="7" style="text-align: center; color: #dc3545; padding: 40px;">
+              <i class="fas fa-exclamation-triangle"></i>
+              <p style="margin: 10px 0;"><strong>Supabase Client Error</strong></p>
+              <p style="font-size: 14px;">File supabaseClient.js tidak ditemukan atau tidak dimuat dengan benar</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+      
+      console.log('✅ Supabase client found');
+      
+      // Check authentication
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+          console.log('❌ No user authenticated, redirecting to login...');
+          alert('Silakan login terlebih dahulu');
+          window.location.href = 'login.html';
+          return;
+        }
+        
+        console.log('✅ User authenticated:', user.email);
+        
+        // Check if user is owner
+        let role = 'renter';
+        try {
+          const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
+          role = profile?.role || user.user_metadata?.role || 'renter';
+        } catch (e) {
+          role = user.user_metadata?.role || 'renter';
+        }
+        
+        if (role !== 'owner') {
+          console.log('❌ User is not owner, redirecting...');
+          alert('Akses ditolak. Halaman ini hanya untuk owner.');
+          window.location.href = 'index.html';
+          return;
+        }
+        
+        console.log('✅ User is owner');
+        
+      } catch (e) {
+        console.warn('⚠️ Auth check failed:', e);
+      }
+      
+      // Load orders
+      await loadOrders();
+    });
+  </script>
+</body>
+</html>

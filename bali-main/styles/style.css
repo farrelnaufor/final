@@ -1,0 +1,904 @@
+/* --- Reset & Gaya Umum --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    overflow-x: hidden;
+}
+
+/* --- Navbar Transparan 10% --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    z-index: 1000;
+    background-color: rgba(48, 48, 48, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+/* --- Gaya untuk Tombol di Navbar --- */
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-contact {
+    text-decoration: none;
+    color: #303030;
+    font-weight: 600;
+    padding: 8px 20px;
+    background-color: #FFD448;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-contact:hover {
+    background-color: #ffcc00;
+    transform: translateY(-2px);
+}
+
+.btn-login {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    background: transparent;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-login:hover {
+    background-color: #FFD448;
+    color: #1a1a1a;
+    border-color: #FFD448;
+    text-shadow: none;
+}
+
+/* Styling untuk nav actions */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Owner link styling */
+.btn-owner-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 212, 72, 0.2);
+    color: #FFD448;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+.btn-owner-link:hover {
+    background-color: #FFD448;
+    color: #1a1a1a;
+    transform: scale(1.1);
+}
+
+/* Styling untuk user profile */
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.user-name {
+    color: #ffffff;
+    font-weight: 500;
+    margin-right: 10px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.btn-logout {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+}
+
+/* --- Hero Section --- */
+#hero {
+    height: 80vh;
+    background: url(/bali-main/assets/image/main.jpeg) no-repeat center center/cover;
+}
+
+/* --- Room Details Section --- */
+.room-details {
+    background-color: #2a2a2a;
+    padding: 40px 10%;
+    position: relative;
+    z-index: 5;
+}
+
+.room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.room-title h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.room-title h2 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #FFD448;
+    margin-bottom: 5px;
+}
+
+.room-location {
+    display: flex;
+    align-items: center;
+    color: #b0b0b0;
+    font-size: 16px;
+}
+
+.room-location i {
+    margin-right: 8px;
+    color: #FFD448;
+}
+
+.room-price {
+    text-align: right;
+}
+
+.price-label {
+    font-size: 16px;
+    color: #b0b0b0;
+}
+
+.price-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #FFD448;
+}
+
+.price-period {
+    font-size: 16px;
+    color: #b0b0b0;
+}
+
+.room-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-action {
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-save {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+.btn-save:hover {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+.btn-share {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+.btn-share:hover {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+.btn-book {
+    background-color: #FFD448;
+    color: #303030;
+}
+
+.btn-book:hover {
+    background-color: #ffcc00;
+    transform: translateY(-2px);
+}
+
+/* --- Integrated Booking Controls --- */
+.booking-controls {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #3a3a3a;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.booking-form h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #FFD448;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.room-select, .date-input, .month-select {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #303030;
+    color: #ffffff;
+    border: 1px solid #FFD448;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFD448' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+    transition: all 0.3s ease;
+}
+
+.custom-select {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #303030;
+    color: #ffffff;
+    border: 1px solid #FFD448;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFD448' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    transition: all 0.3s ease;
+}
+
+.room-select:focus, .date-input:focus {
+    border-color: #ff6b6b;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+}
+
+.room-select option {
+    background-color: #303030;
+    color: #ffffff;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #444;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #FFD448;
+    outline: none;
+}
+
+.booking-summary {
+    margin-top: 15px;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    font-size: 16px;
+    color: #e0e0e0;
+}
+
+.summary-item:last-child {
+    margin-bottom: 0;
+    font-weight: bold;
+    color: #FFD448;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed #444;
+    font-size: 18px;
+}
+
+.summary-label {
+    color: #FFD448;
+    font-weight: 500;
+}
+
+.summary-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.summary-value.highlight {
+    color: #FFD448;
+    font-size: 20px;
+}
+
+.btn-pesan {
+    padding: 12px 30px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 15px;
+    align-self: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+    width: 100%;
+}
+
+.btn-pesan:hover {
+    background-color: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 107, 107, 0.4);
+}
+
+.btn-pesan:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+}
+
+.btn-pesan-sekarang {
+    background-color: #FFD448;
+    color: #1a1a1a;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-pesan-sekarang:hover {
+    background-color: #FFE57F;
+    transform: translateY(-2px);
+}
+
+.btn-pesan-sekarang i {
+    font-size: 20px;
+}
+
+/* Backward compatibility */
+.btn-book-now {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* --- Room Gallery --- */
+.room-gallery {
+    margin: 40px 0;
+}
+
+.gallery-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.gallery-item {
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* --- Reviews Section --- */
+.reviews-section {
+    background-color: #2a2a2a;
+    padding: 40px 10%;
+    margin-top: -20px;
+}
+
+.reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.reviews-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.rating-summary {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.rating-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #FFD448;
+}
+
+.rating-stars {
+    color: #FFD448;
+}
+
+.review-item {
+    background-color: #3a3a3a;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.reviewer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.reviewer-name {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.review-date {
+    color: #b0b0b0;
+    font-size: 14px;
+}
+
+.review-rating {
+    color: #FFD448;
+}
+
+.review-content {
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+.btn-write-review {
+    display: block;
+    width: fit-content;
+    margin: 30px auto 0;
+    padding: 12px 25px;
+    background-color: transparent;
+    color: #FFD448;
+    border: 1px solid #FFD448;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-write-review:hover {
+    background-color: #FFD448;
+    color: #303030;
+}
+
+/* --- Main Content Area --- */
+.main-content {
+    background-color: #2a2a2a;
+    padding: 80px 10%;
+    margin-top: -83.3px;
+    position: relative;
+    z-index: 5;
+}
+
+.main-content::before {
+    content: 'Fasilitas';
+    display: block;
+    font-size: 32px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 15;
+    margin-top: 20px;
+}
+
+/* --- Fasilitas Section --- */
+.fasilitas-container {
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    background-color: transparent;
+}
+
+.fasilitas-utama {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #444444;
+    margin-bottom: 30px;
+}
+
+.icon-item {
+    text-align: center;
+}
+
+.icon-item i {
+    font-size: 40px;
+    color: #FFD448;
+    margin-bottom: 10px;
+}
+
+.icon-item p {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.fasilitas-detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tipe-kamar {
+    background-color: #3a3a3a;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 5px solid #FFD448;
+    width: 45%;
+}
+
+.tipe-kamar h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.tipe-kamar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tipe-kamar li {
+    padding: 10px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.tipe-kamar li::before {
+    content: '';
+    display: inline-block;
+    min-width: 8px;
+    height: 8px;
+    background-color: #FFD448;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #1a1a1a;
+    padding: 40px 10%;
+    text-align: center;
+    color: #b0b0b0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #FFD448;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #333;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #FFD448;
+    color: #1a1a1a;
+}
+
+.copyright {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.book_psn {
+    text-decoration: none;
+    color: #303030;
+    font-weight: 600;
+    padding: 8px 20px;
+    background-color: #FFD448;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* ================================================================================= */
+/* --- Media Queries untuk Responsif --- */
+/* ================================================================================= */
+
+/* Untuk Tablet dan Layar Lebih Kecil (max-width: 768px) */
+@media (max-width: 768px) {
+    
+    /* Navbar */
+    .navbar {
+        padding: 15px 20px;
+    }
+    
+    .logo {
+        font-size: 20px;
+    }
+    
+    .nav-buttons {
+        gap: 10px;
+    }
+    
+    .btn-contact, .btn-login {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+
+    /* Room Details */
+    .room-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .room-price {
+        text-align: left;
+        margin-top: 15px;
+    }
+
+    .room-actions {
+        flex-wrap: wrap;
+    }
+
+    /* Integrated Booking Controls */
+    .booking-controls {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+        padding: 20px;
+    }
+
+    .room-select {
+        width: 100%;
+        padding-right: 15px;
+        background-image: none;
+        -webkit-appearance: menulist;
+        -moz-appearance: menulist;
+        appearance: menulist;
+    }
+    
+    .btn-pesan {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    /* Main Content */
+    .main-content {
+        padding: 60px 5% 40px;
+    }
+
+    .main-content::before {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    /* Fasilitas */
+    .fasilitas-container {
+        padding: 20px;
+    }
+
+    .fasilitas-utama {
+        flex-direction: column;
+        gap: 25px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    .fasilitas-detail {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .tipe-kamar {
+        width: 100%;
+    }
+
+    /* Reviews */
+    .reviews-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .rating-summary {
+        align-self: flex-start;
+    }
+
+    /* Footer */
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+

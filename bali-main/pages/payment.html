@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran - Kost BaLy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/bali-main/styles/payment.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="/bali-main/scripts/api/supabaseClient.js"></script>
+</head>
+<body>
+    <div class="payment-container">
+        <header class="payment-header">
+            <a href="/bali-main/pages/index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Kembali
+            </a>
+            <h1>Halaman Pembayaran</h1>
+        </header>
+
+        <main class="payment-main">
+            <section class="order-summary">
+                <h2>Ringkasan Pemesanan</h2>
+                <div class="summary-item">
+                    <span>Tipe Kamar:</span>
+                    <span id="summary-room-type">-</span>
+                </div>
+                <div class="summary-item">
+                    <span>Harga / Bulan:</span>
+                    <span id="summary-room-price">-</span>
+                </div>
+                <div class="summary-item">
+                    <span>Tanggal Mulai:</span>
+                    <span id="summary-check-in">-</span>
+                </div>
+                <div class="summary-item">
+                    <span>Tanggal Selesai:</span>
+                    <span id="summary-check-out">-</span>
+                </div>
+                <div class="summary-item">
+                    <span>Durasi:</span>
+                    <span id="summary-duration">-</span>
+                </div>
+                <div class="summary-item total">
+                    <span>Total Pembayaran:</span>
+                    <span id="summary-total">-</span>
+                </div>
+                <div class="summary-item">
+                    <span>Nomor Pesanan:</span>
+                    <span id="order-number">-</span>
+                </div>
+            </section>
+
+            <!-- Form section - will be hidden after submission -->
+            <section class="payment-form" id="payment-form-section">
+                <h2>Detail Pembayaran</h2>
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Nomor Telepon</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment-method">Metode Pembayaran</label>
+                        <select id="payment-method" name="payment-method" required>
+                            <option value="">-- Pilih Metode --</option>
+                        
+                            <option value="va">Qris</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-pesan-sekarang" id="submit-button">
+                        <i class="fas fa-lock"></i>
+                        <span id="submit-text">Pesan Sekarang</span>
+                        <i id="submit-loader" class="fas fa-spinner fa-spin" style="display: none;"></i>
+                    </button>
+                </form>
+            </section>
+
+            <!-- QR Code section - initially hidden, shown after form submission -->
+            <section class="qr-payment-section" id="qr-payment-section" style="display: none;">
+                <h2>Pembayaran via QR Code</h2>
+                <div class="qr-container">
+                    <img id="qr-code-image" src="/assets/qr-code.jpg" alt="QR Code Pembayaran">
+                    <p class="qr-instructions">Scan QR Code di atas untuk melakukan pembayaran</p>
+                </div>
+                <button id="payment-completed-btn" class="btn-payment-completed" disabled>
+                    <i class="fab fa-whatsapp"></i>
+                    Pembayaran Selesai
+                </button>
+                <div id="loading-indicator" class="loading-indicator" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Mengarahkan ke WhatsApp...</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/bali-main/scripts/pages/payment.js"></script>
+</body>
+
+</html>

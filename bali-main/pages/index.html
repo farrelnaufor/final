@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kost BaLy - Booking Kamar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/bali-main/styles/style.css">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+<div class="logo">Kost BaLy</div>
+<div class="nav-actions">
+  <a href="owner-dashboard.html" class="btn-owner-link" title="Portal Owner">
+    <i class="fas fa-user-shield"></i>
+  </a>
+  <button id="login-button" class="btn-login">Login</button>
+  <div id="user-profile" style="display: none; align-items: center; gap: 10px;">
+    <span id="user-name" style="color: white;"></span>
+    <button id="logout-button" class="btn-logout">Logout</button>
+  </div>
+</div>
+</nav>
+
+<!-- Hero Section with Room Image -->
+<section id="hero"></section>
+
+<!-- Room Details Section -->
+<section class="room-details">
+<div class="room-header">
+<div class="room-title">
+<h1>Kost BaLy</h1>
+<h2 id="room-type">Kamar A Type 1</h2>
+<div class="room-location">
+<i class="fas fa-map-marker-alt"></i>
+<span id="room-location">Kota Yogyakarta</span>
+</div>
+</div>
+<div class="room-price">
+<div class="price-label">Harga Sewa Bulanan</div>
+<div class="price-value" id="price-value">Rp 800.000</div>
+<div class="price-period" id="price-period">per bulan</div>
+</div>
+</div>
+
+<!-- Integrated Booking Controls -->
+<div class="booking-controls">
+  <div class="form-group">
+    <label for="room-selector">Tipe Kamar:</label>
+    <select id="room-selector" class="form-control">
+      <option value="type1">Kamar Tipe 1</option>
+      <option value="type2">Kamar Tipe 2</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="check-in">Tanggal Mulai:</label>
+    <input type="date" id="check-in" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="check-out">Tanggal Selesai:</label>
+    <input type="date" id="check-out" class="form-control" required>
+  </div>
+
+  <!-- PREVIEW HAPUS: bagian preview harga dan kamar dihilangkan sesuai permintaan -->
+
+  <button class="btn-pesan-sekarang" id="btn-book-now">
+    <i class="fas fa-check-circle"></i>
+    PESAN SEKARANG
+  </button>
+</div>
+
+<!-- Room Gallery -->
+<div class="room-gallery">
+<h3 class="gallery-title">Galeri Kamar</h3>
+<div class="gallery-container">
+<div class="gallery-item">
+<img src="/bali-main/assets/image/kamar1.jpeg" alt="Kamar 1">
+</div>
+<div class="gallery-item">
+<img src="/bali-main/assets/image/kamar2.jpeg" alt="Kamar 2">
+</div>
+<div class="gallery-item">
+<img src="/bali-main/assets/image/km3.jpeg" alt="Kamar 3">
+</div>
+<div class="gallery-item">
+<img src="https://picsum.photos/seed/kamar4/400/300.jpg" alt="Kamar 4">
+</div>
+</div>
+</div>
+</section>
+
+<!-- Main Content with Facilities -->
+<div class="main-content">
+<div class="fasilitas-container">
+<div class="fasilitas-utama">
+<div class="icon-item">
+<i class="fas fa-bath"></i>
+<p>Kamar Mandi Dalam</p>
+</div>
+<div class="icon-item">
+<i class="fas fa-utensils"></i>
+<p>Dapur Bersama</p>
+</div>
+<div class="icon-item">
+<i class="fas fa-wifi"></i>
+<p>WiFi Gratis</p>
+</div>
+<div class="icon-item">
+<i class="fas fa-parking"></i>
+<p>Parkir Luas</p>
+</div>
+</div>
+<div class="fasilitas-detail">
+<div class="tipe-kamar">
+<h3>Fasilitas Kamar Tipe 1</h3>
+<ul>
+<li>Ukuran Kamar 3.5 m x 4.5 m</li>
+<li>Kasur</li>
+<li>Lemari Pakaian</li>
+<li>Kamar Mandi Dalam</li>
+</ul>
+</div>
+<div class="tipe-kamar">
+<h3>Fasilitas Kamar Tipe 2</h3>
+<ul>
+<li>Ukuran Kamar 2.5m x 4.5 m</li>
+<li>Kasur</li>
+<li>Lemari Pakaian</li>
+<li>Kamar Mandi Dalam   </li>
+</ul>
+</div>
+</div>                  
+</div>
+</div>
+
+<!-- Reviews Section -->
+<section class="reviews-section">
+<div class="reviews-header">
+<h2 class="reviews-title">Ringkasan Ulasan</h2>
+<div class="rating-summary">
+<div class="rating-value">4.8</div>
+<div class="rating-stars">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star-half-alt"></i>
+</div>
+</div>
+</div>
+
+<div class="review-item">
+<div class="review-header">
+<div class="reviewer-info">
+<div class="reviewer-avatar">A</div>
+<div>
+<div class="reviewer-name">Ahmad</div>
+<div class="review-date">2 minggu yang lalu</div>
+</div>
+</div>
+<div class="review-rating">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+</div>
+</div>
+<div class="review-content">
+</div>
+</div>
+
+<div class="review-item">
+<div class="review-header">
+<div class="reviewer-info">
+<div class="reviewer-avatar">S</div>
+<div>
+<div class="reviewer-name">Siti</div>
+<div class="review-date">1 bulan yang lalu</div>
+</div>
+</div>
+<div class="review-rating">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="far fa-star"></i>
+</div>
+</div>
+<div class="review-content">
+</div>
+</div>
+
+<button class="btn-write-review">Tulis Ulasan</button>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="footer-content">
+<div class="footer-section">
+<h3>Tentang Kost BaLy</h3>
+<p>Platform resmi untuk penyewaan kamar kost di Yogyakarta.</p>
+</div>
+<div class="footer-section">
+<h3>Link Cepat</h3>
+<ul>
+<li><a href="#">Beranda</a></li>
+<li><a href="#">Kamar Tersedia</a></li>
+<li><a href="#">Tentang Kami</a></li>
+<li><a href="#">Kontak</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Hubungi Kami</h3>
+<p><i class="fas fa-map-marker-alt"></i> Jl. Contoh No. 123, Yogyakarta</p>
+<p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
+<p><i class="fas fa-envelope"></i> info@kamar-tasy.com</p>
+</div>
+</div>
+<div class="social-icons">
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-whatsapp"></i></a>
+</div>
+<div class="copyright">
+<p>&copy; Kost BaLy. Hak Cipta Dilindungi.</p>
+</div>
+</footer>
+
+<script src="../scripts/pages/script.js"></script>
+<!-- Script untuk Supabase dan Auth -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../scripts/api/supabaseClient.js"></script>
+<script src="../scripts/auth/auth.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Periksa status login saat halaman dimuat
+    window.authApi.checkLoginStatus();
+
+    // Tambahkan event listener untuk tombol login
+    const loginButton = document.getElementById('login-button');
+    if (loginButton) {
+      loginButton.addEventListener('click', function() {
+        window.location.href = 'login.html';
+      });
+    }
+
+    // Tambahkan event listener untuk tombol logout
+    const logoutButton = document.getElementById('logout-button');
+    if (logoutButton) {
+      logoutButton.addEventListener('click', function() {
+        window.authApi.logoutUser().then(() => {
+          window.location.href = 'login.html';
+        });
+      });
+    }
+  });
+</script>
+</body>
+
+</html>
+
+
